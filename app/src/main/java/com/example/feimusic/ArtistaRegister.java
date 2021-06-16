@@ -38,6 +38,7 @@ public class ArtistaRegister extends AppCompatActivity {
     ArtistaRequest artistaRequest = new ArtistaRequest();
 
     int PICK_IMAGE_REQUEST = 1;
+
     Bitmap bitmap;
 
     @Override
@@ -84,6 +85,7 @@ public class ArtistaRegister extends AppCompatActivity {
                 if(response.body().getUsername() !=null){
                     artistaRequest.setUsername(response.body().getUsername());
                     artistaRegister();
+
                 }
             }
 
@@ -132,7 +134,6 @@ public class ArtistaRegister extends AppCompatActivity {
     }
 
     private void showFileChooser() {
-
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);

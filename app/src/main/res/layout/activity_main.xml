@@ -63,7 +63,7 @@
                     android:layout_marginRight="20dp"
                     android:background="@drawable/custom_input"
                     android:drawableStart="@drawable/ic_username"
-                    android:drawableLeft="@drawable/ic_username"
+
                     android:drawablePadding="5dp"
                     android:ems="10"
                     android:hint="Password"

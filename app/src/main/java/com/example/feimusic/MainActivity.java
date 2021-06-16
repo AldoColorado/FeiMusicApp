@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     session = new Session(MainActivity.this);
                     session.setToken(response.body().getToken());
                     Toast.makeText(MainActivity.this,"Login success", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+                    Intent intent = new Intent(MainActivity.this, MenuPrincipalArtista.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_LONG).show();

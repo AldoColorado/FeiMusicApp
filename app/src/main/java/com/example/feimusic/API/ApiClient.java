@@ -48,4 +48,10 @@ public class ApiClient {
         return artistaService;
 
     }
+
+    public static CancionService getCancionService(){
+        CancionService cancionService = getRetrofit().create(CancionService.class);
+
+        return cancionService;
+    }
 }
