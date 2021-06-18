@@ -75,6 +75,8 @@ public class ArtistaRegister extends AppCompatActivity {
         cuentaRequest.setUsername(username.getText().toString());
         cuentaRequest.setCorreo(correo.getText().toString());
         cuentaRequest.setPassword(password.getText().toString());
+        cuentaRequest.setTipoUsuario("Artista");
+
 
         Call<CuentaReponse> cuentaReponseCall = ApiClient.getCuentaService()
                 .createCuenta(cuentaRequest);

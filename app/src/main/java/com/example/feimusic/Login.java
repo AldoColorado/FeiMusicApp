@@ -105,7 +105,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<ConsumidorRegisterResponse> call, Response<ConsumidorRegisterResponse> response) {
                 if(response.body().getStatus().equals("Success")){
-                   abrirMenuPrincipalConsumidor();
+                   //abrirMenuPrincipalConsumidor();
+                    Intent intent = new Intent(Login.this, Reproductor.class);
+                    startActivity(intent);
                 }
             }
             @Override
