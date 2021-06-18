@@ -5,6 +5,7 @@ public class ArtistaResponse {
     private String idArtista;
     private String nombreArtista;
     private String imagenArtista;
+    private String status;
 
     public String getIdArtista() {
         return idArtista;
@@ -28,5 +29,13 @@ public class ArtistaResponse {
 
     public void setImagenArtista(String imagenArtista) {
         this.imagenArtista = imagenArtista;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -6,6 +6,7 @@ public class ConsumidorRegisterResponse {
     private String nombre;
     private String apellidos;
     private String username;
+    private String status;
 
     public String getIdConsumidor() {
         return idConsumidor;
@@ -37,5 +38,13 @@ public class ConsumidorRegisterResponse {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

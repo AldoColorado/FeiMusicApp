@@ -12,12 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FeiMusicApp">
-        <activity android:name=".SubirAlbum"></activity>
+        <activity android:name=".Reproductor"></activity>
+        <activity android:name=".MenuPrincipalConsumidor" />
+        <activity android:name=".SubirAlbum" />
         <activity android:name=".SubirCancion" />
         <activity android:name=".MenuPrincipalArtista" />
         <activity android:name=".ArtistaRegister" />
         <activity android:name=".ConsumidorRegister" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

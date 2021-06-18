@@ -18,7 +18,6 @@ import com.example.feimusic.API.ApiClient;
 import com.example.feimusic.Request.ArtistaRequest;
 import com.example.feimusic.Request.CuentaRequest;
 import com.example.feimusic.Response.ArtistaResponse;
-import com.example.feimusic.Response.ConsumidorRegisterResponse;
 import com.example.feimusic.Response.CuentaReponse;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -112,7 +111,7 @@ public class ArtistaRegister extends AppCompatActivity {
                 if (response.body().getNombreArtista() != null) {
                     Toast.makeText(ArtistaRegister.this, response.body().getNombreArtista(), Toast.LENGTH_LONG)
                             .show();
-                    Intent intent = new Intent(ArtistaRegister.this, MainActivity.class);
+                    Intent intent = new Intent(ArtistaRegister.this, Login.class);
                     startActivity(intent);
                 }
             }
