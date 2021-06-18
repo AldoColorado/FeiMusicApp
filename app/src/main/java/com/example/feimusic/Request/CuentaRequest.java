@@ -5,6 +5,7 @@ public class CuentaRequest {
     private String username;
     private String correo;
     private String password;
+    private String tipoUsuario;
 
 
     public String getUsername() {
@@ -29,5 +30,13 @@ public class CuentaRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }
