@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FeiMusicApp">
-        <activity android:name=".Reproductor"></activity>
+        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".Reproductor" />
         <activity android:name=".MenuPrincipalConsumidor" />
         <activity android:name=".SubirAlbum" />
         <activity android:name=".SubirCancion" />
