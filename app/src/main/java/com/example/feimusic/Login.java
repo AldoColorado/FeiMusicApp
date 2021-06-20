@@ -77,6 +77,9 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this,"Login success", Toast.LENGTH_LONG).show();
                     buscarConsumidor(response.body().getUsername());
                     buscarArtista(response.body().getUsername());
+
+
+
                 }else {
                     Toast.makeText(Login.this,"Login Failed", Toast.LENGTH_LONG).show();
                 }
@@ -105,12 +108,11 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<ConsumidorRegisterResponse> call, Response<ConsumidorRegisterResponse> response) {
                 if(response.body().getStatus().equals("Success")){
-                   //abrirMenuPrincipalConsumidor();
+
                     Intent intent = new Intent(Login.this, MainMenu.class);
                     startActivity(intent);
 
-                    /*Intent intent = new Intent(Login.this, Reproductor.class);
-                    startActivity(intent);*/
+
                 }
             }
             @Override

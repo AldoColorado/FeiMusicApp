@@ -1,12 +1,18 @@
 package com.example.feimusic.Response;
 
+import android.widget.ImageView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class CancionResponse {
 
     private String idCancion;
     private String nombreCancion;
     private String letra;
-    private String imagenCancion;
-    private String track;
+    private JSONObject imagenCancion;
+    private JSONObject track;
+
 
     public String getIdCancion() {
         return idCancion;
@@ -32,19 +38,19 @@ public class CancionResponse {
         this.letra = letra;
     }
 
-    public String getImagenCancion() {
+    public JSONObject getImagenCancion() {
         return imagenCancion;
     }
 
-    public void setImagenCancion(String imagenCancion) {
+    public void setImagenCancion(JSONObject imagenCancion) {
         this.imagenCancion = imagenCancion;
     }
 
-    public String getTrack() {
+    public JSONObject getTrack() {
         return track;
     }
 
-    public void setTrack(String track) {
+    public void setTrack(JSONObject track) {
         this.track = track;
     }
 }
