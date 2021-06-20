@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.feimusic.Request.SongLikeRequest;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link LikesFragment#newInstance} factory method to
@@ -65,7 +67,15 @@ public class LikesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_likes, container, false);
         ListView listSongsLike = view.findViewById(R.id.listSongsLike);
-        //listSongsLike.getAdapter()
+        //adapter = new cancionAdapter(this, );
+
         return view;
+    }
+
+    public void getSongsLike(){
+        SongLikeRequest songLikeRequest = new SongLikeRequest();
+        songLikeRequest.setIdConsumidor(1);
+
+        //Call
     }
 }
