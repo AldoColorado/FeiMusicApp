@@ -1,13 +1,16 @@
 package com.example.feimusic;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
@@ -18,9 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.feimusic.API.ApiClient;
+import com.example.feimusic.API.CancionService;
 import com.example.feimusic.Request.CancionRequest;
 import com.example.feimusic.Response.CancionResponse;
 import com.google.android.material.textfield.TextInputEditText;
+
 
 import org.w3c.dom.Text;
 
@@ -30,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import retrofit2.Call;
@@ -99,6 +105,7 @@ public class SubirCancion extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Seleciona la cancion"), PICK_IMAGE_REQUEST);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -107,14 +114,19 @@ public class SubirCancion extends AppCompatActivity {
             Uri filePath = data.getData();
                 byte[] bytearray = new byte[0];
                 try {
+
                     InputStream inputStream =
                             getContentResolver().openInputStream(filePath);
 
+
+                    //cancionbytes = Base64.encodeToString(bytes, 0);
+
                     bytearray = new byte[inputStream.available()];
                     bytearray = toByteArray(inputStream);
-                    byte[] bytesBaseB4 = Base64.encode(bytearray,Base64.NO_WRAP);
-
-                    cancionbytes = new String(bytesBaseB4, StandardCharsets.UTF_8);
+                    //byte[] bytesBaseB4 = Base64.encode(bytearray,Base64.NO_WRAP);
+                    //cancionbytes = Base64.encodeToString(bytearray,0);
+                    cancionbytes = bytesToHex(bytearray);
+                    //cancionbytes = new String(bytesBaseB4, StandardCharsets.UTF_8);
                     setFileName(filePath);
                 } catch (Exception e) {
                     e.printStackTrace();
