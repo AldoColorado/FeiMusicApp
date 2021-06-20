@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +25,8 @@ public class LikesFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private ListView lvItems;
+    private cancionAdapter adapter;
 
     public LikesFragment() {
         // Required empty public constructor

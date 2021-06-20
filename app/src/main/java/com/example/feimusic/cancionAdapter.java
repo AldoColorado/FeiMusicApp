@@ -1,3 +1,5 @@
+package com.example.feimusic;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,11 +16,11 @@ import com.example.feimusic.Response.CancionResponse;
 
 import java.util.ArrayList;
 
-public class songsLikesAdapter extends BaseAdapter {
+public class cancionAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<CancionResponse> songLikeList;
 
-    public songsLikesAdapter(Context context, ArrayList<CancionResponse> songLikeList) {
+    public cancionAdapter(Context context, ArrayList<CancionResponse> songLikeList) {
         this.context = context;
         this.songLikeList = songLikeList;
     }
