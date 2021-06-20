@@ -9,10 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
+import com.example.feimusic.API.ApiClient;
 import com.example.feimusic.Response.CancionResponse;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +36,9 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ListView listView;
-    ArrayList<String> canciones = new ArrayList<String>();
-    ArrayAdapter adapter;
+    private SearchView searchView;
+    ArrayList<CancionResponse> canciones = new ArrayList<CancionResponse>();
+    cancionAdapter adapter;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -72,10 +79,25 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_search, container, false);
         listView = root.findViewById(R.id.ListaBusqueda);
-
-        //adapter = new ArrayAdapter(this, root.android.s, canciones);
-
+        searchView = root.findViewById(R.id.search);
+        //adapter = new cancionAdapter(this, )
 
         return inflater.inflate(R.layout.fragment_search, container, false);
+    }
+
+    public void obtenerBusqueda(String busqueda){
+        Call<CancionResponse> cancionResponseCall = ApiClient.getCancionService().getCancion("1"); {
+            cancionResponseCall.enqueue(new Callback<CancionResponse>() {
+                @Override
+                public void onResponse(Call<CancionResponse> call, Response<CancionResponse> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<CancionResponse> call, Throwable t) {
+
+                }
+            });
+        }
     }
 }

@@ -124,8 +124,8 @@ public class SubirCancion extends AppCompatActivity {
                     bytearray = new byte[inputStream.available()];
                     bytearray = toByteArray(inputStream);
                     //byte[] bytesBaseB4 = Base64.encode(bytearray,Base64.NO_WRAP);
-                    //cancionbytes = Base64.encodeToString(bytearray,0);
-                    cancionbytes = bytesToHex(bytearray);
+                    cancionbytes = Base64.encodeToString(bytearray,0);
+                    //cancionbytes = bytesToHex(bytearray);
                     //cancionbytes = new String(bytesBaseB4, StandardCharsets.UTF_8);
                     setFileName(filePath);
                 } catch (Exception e) {
