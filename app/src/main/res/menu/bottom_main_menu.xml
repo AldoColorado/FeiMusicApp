@@ -4,11 +4,11 @@
         android:id="@+id/searchFragment"
         android:title="Buscar"
         android:icon="@drawable/ic_search"/>
-    <!--<item
+    <item
         android:id="@+id/libraryFragment"
         android:title="Tú biblioteca"
-        android:icon="@drawable/ic_library_music"/>-->
-    <item
+        android:icon="@drawable/ic_library_music"/>
+    <!--<item
         android:id="@+id/likesFragment"
         android:title="Likes"
         android:icon="@drawable/ic_library_music"/>
@@ -23,5 +23,5 @@
     <item
         android:id="@+id/artistsFragment"
         android:title="Artistas"
-        android:icon="@drawable/ic_person"/>
+        android:icon="@drawable/ic_person"/>-->
 </menu>
