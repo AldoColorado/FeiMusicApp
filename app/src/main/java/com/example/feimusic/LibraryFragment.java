@@ -1,23 +1,15 @@
 package com.example.feimusic;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.example.feimusic.ui.main.PagerController;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 /**
@@ -27,12 +19,11 @@ import com.google.android.material.tabs.TabLayout;
  */
 public class LibraryFragment extends Fragment {
 
-    /*TabLayout tabLayout;
-    ViewPager viewPager;
-    TabItem tabLikes, tabPlaylists, tabAlbums, tabArtist;
-    PagerController pageAdapter;*/
-
-
+    TabLayout tabLayout;
+    FrameLayout frameLayout;
+    Fragment fragment = null;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,28 +69,42 @@ public class LibraryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false);
-        /*iew view = inflater.inflate(R.layout.fragment_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_library, container, false);
         tabLayout = view.findViewById(R.id.tablayoutLibrary);
-        viewPager = view.findViewById(R.id.viewpagerLibrary);
+        frameLayout = view.findViewById(R.id.frameLayoutLibrary);
 
-        LinearLayoutManager  mLayoutManager = new LinearLayoutManager(getActivity());
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        //iewPager.setAdapter(new PagerAdapter(getFragmentManager(), tabLayout.getTabCount()));
-        pageAdapter = new PagerController(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
-
-        viewPager.setAdapter(pageAdapter);
+        fragment = new LikesFragment();
+        fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayoutLibrary, fragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0){
-                    pageAdapter.notifyDataSetChanged();
+                Fragment fragment = null;
+                switch (tab.getPosition()){
+                    case 0:
+                        fragment = new LikesFragment();
+                        break;
+                    case 1:
+                        fragment = new PlaylistsFragment();
+                        break;
+                    case 2:
+                        fragment = new AlbumsFragment();
+                        break;
+                    case 3:
+                        fragment = new ArtistsFragment();
+                        break;
+                    default:
+                        fragment = null;
                 }
-                if (tab.getPosition() == 1){
-                    pageAdapter.notifyDataSetChanged();
-                }
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.frameLayoutLibrary, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
             }
 
             @Override
@@ -112,8 +117,7 @@ public class LibraryFragment extends Fragment {
 
             }
         });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        return view;*/
+        return view;
     }
 }
 
