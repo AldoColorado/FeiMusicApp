@@ -1,5 +1,10 @@
 package com.example.feimusic.Response;
 
+import android.widget.ImageView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class CancionResponse {
 
     private String idCancion;
@@ -7,6 +12,7 @@ public class CancionResponse {
     private String letra;
     private String imagenCancion;
     private String track;
+
 
     public String getIdCancion() {
         return idCancion;

@@ -39,7 +39,7 @@ public class ConsumidorRegister extends AppCompatActivity {
         btnRegistrarArtista = findViewById(R.id.btnIrFormularioRegistroArtista);
         btnRegistrarse = findViewById(R.id.btnRegistrarse);
 
-        Toast.makeText(ConsumidorRegister.this, session.getToken(), Toast.LENGTH_LONG).show();
+
 
 
         btnRegistrarArtista.setOnClickListener(new View.OnClickListener() {
