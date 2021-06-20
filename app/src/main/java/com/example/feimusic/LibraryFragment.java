@@ -1,12 +1,24 @@
 package com.example.feimusic;
 
+import android.app.Activity;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.feimusic.ui.main.PagerController;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +26,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class LibraryFragment extends Fragment {
+
+    /*TabLayout tabLayout;
+    ViewPager viewPager;
+    TabItem tabLikes, tabPlaylists, tabAlbums, tabArtist;
+    PagerController pageAdapter;*/
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +79,41 @@ public class LibraryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_library, container, false);
+        /*iew view = inflater.inflate(R.layout.fragment_library, container, false);
+        tabLayout = view.findViewById(R.id.tablayoutLibrary);
+        viewPager = view.findViewById(R.id.viewpagerLibrary);
+
+        LinearLayoutManager  mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //iewPager.setAdapter(new PagerAdapter(getFragmentManager(), tabLayout.getTabCount()));
+        pageAdapter = new PagerController(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+
+        viewPager.setAdapter(pageAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 0){
+                    pageAdapter.notifyDataSetChanged();
+                }
+                if (tab.getPosition() == 1){
+                    pageAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        return view;*/
     }
 }
+
