@@ -1,5 +1,7 @@
 package com.example.feimusic.API;
 
+import com.example.feimusic.Request.SongLikeRequest;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -53,5 +55,11 @@ public class ApiClient {
         CancionService cancionService = getRetrofit().create(CancionService.class);
 
         return cancionService;
+    }
+
+    public static SonglikeService getSongLikeService(){
+        SonglikeService songlikeService = getRetrofit().create(SonglikeService.class);
+
+        return songlikeService;
     }
 }

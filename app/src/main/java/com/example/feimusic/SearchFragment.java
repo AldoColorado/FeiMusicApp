@@ -73,7 +73,7 @@ public class SearchFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_search, container, false);
         listView = root.findViewById(R.id.ListaBusqueda);
 
-        adapter = new ArrayAdapter(this, root.android.s, canciones);
+        //adapter = new ArrayAdapter(this, root.android.s, canciones);
 
 
         return inflater.inflate(R.layout.fragment_search, container, false);

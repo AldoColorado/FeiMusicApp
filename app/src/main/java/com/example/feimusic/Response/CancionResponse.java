@@ -10,8 +10,8 @@ public class CancionResponse {
     private String idCancion;
     private String nombreCancion;
     private String letra;
-    private JSONObject imagenCancion;
-    private JSONObject track;
+    private String imagenCancion;
+    private String track;
 
 
     public String getIdCancion() {
@@ -38,19 +38,19 @@ public class CancionResponse {
         this.letra = letra;
     }
 
-    public JSONObject getImagenCancion() {
+    public String getImagenCancion() {
         return imagenCancion;
     }
 
-    public void setImagenCancion(JSONObject imagenCancion) {
+    public void setImagenCancion(String imagenCancion) {
         this.imagenCancion = imagenCancion;
     }
 
-    public JSONObject getTrack() {
+    public String getTrack() {
         return track;
     }
 
-    public void setTrack(JSONObject track) {
+    public void setTrack(String track) {
         this.track = track;
     }
 }
