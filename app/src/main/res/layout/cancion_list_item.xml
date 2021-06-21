@@ -4,17 +4,15 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/imgViewSongLike"
-        android:layout_width="100dp"
-        android:layout_height="70dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="0dp">
         <TextView
             android:id="@+id/txtsongName"
+            android:textColor="@color/blueColor"
+            android:textSize="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.feimusic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -16,10 +17,9 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
-<<<<<<< Updated upstream
-=======
+
 import android.widget.Toast;
->>>>>>> Stashed changes
+
 
 import com.example.feimusic.API.ApiClient;
 import com.example.feimusic.Response.CancionResponse;
@@ -51,19 +51,17 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     private String mParam1;
     private String mParam2;
     private ListView listView;
-<<<<<<< Updated upstream
+
     private SearchView searchView;
     ArrayList<CancionResponse> canciones = new ArrayList<CancionResponse>();
     cancionAdapter adapter;
-=======
+
     private List<CancionResponse> cancionResponseList = new ArrayList<>();
     AdapterBusquedaCancion adaptador;
 
     RecyclerView recyclerView;
     SearchView busqueda;
 
-
->>>>>>> Stashed changes
 
     public SearchFragment() {
         // Required empty public constructor
@@ -91,7 +89,6 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -105,29 +102,10 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_search, container, false);
-<<<<<<< Updated upstream
-        listView = root.findViewById(R.id.ListaBusqueda);
+
+
         searchView = root.findViewById(R.id.search);
-        //adapter = new cancionAdapter(this, )
 
-        return inflater.inflate(R.layout.fragment_search, container, false);
-    }
-
-    public void obtenerBusqueda(String busqueda){
-        Call<CancionResponse> cancionResponseCall = ApiClient.getCancionService().getCancion("1"); {
-            cancionResponseCall.enqueue(new Callback<CancionResponse>() {
-                @Override
-                public void onResponse(Call<CancionResponse> call, Response<CancionResponse> response) {
-
-                }
-
-                @Override
-                public void onFailure(Call<CancionResponse> call, Throwable t) {
-
-                }
-            });
-        }
-=======
         recyclerView = root.findViewById(R.id.ListaBusqueda);
 
 
@@ -136,10 +114,16 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
         adaptador = new AdapterBusquedaCancion( this.getActivity(), cancionResponseList);
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Reproductor();
+            }
+        });
         recyclerView.setAdapter(adaptador);
 
 
-        buscar("Bichota");
+        //buscar("Bichota");
         busqueda = root.findViewById(R.id.search);
 
         initListener();
@@ -163,7 +147,6 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
                     SendDataToAdapter(cancionResponseList);
                 }
-
             }
 
             @Override
@@ -181,15 +164,21 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         //AdapterBusquedaCancion adaptador = new AdapterBusquedaCancion( this.getActivity(), listaCanciones);
         adaptador.setCancionesResponseList(listaCanciones);
         adaptador.notifyDataSetChanged();
+
         recyclerView.setAdapter(adaptador);
+    }
+
+    public void Reproductor(){
+        Intent intent = new Intent(getActivity(), Reproductor.class);
+        startActivity(intent);
     }
 
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        cancionResponseList.clear();
         buscar(query);
         return false;
->>>>>>> Stashed changes
     }
 
     @Override

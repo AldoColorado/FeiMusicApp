@@ -13,23 +13,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.feimusic.Model.Cancion;
+import com.example.feimusic.Model.ArtistLike;
 import com.example.feimusic.Model.SongLike;
+import com.example.feimusic.Response.ArtistaResponse;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
-public class AdaptarySongLike extends RecyclerView.Adapter<AdaptarySongLike.MyViewHolder> {
+public class AdaptaryArtistLike extends RecyclerView.Adapter<AdaptaryArtistLike.MyViewHolder> {
     private Context mContext;
-    private List<SongLike> songLikeList;
+    private List<ArtistLike> artistLikeList;
 
-    public void setSongLikeList(List<SongLike> songLikeList) {
-        this.songLikeList = songLikeList;
+    public void setArtistLikeList(List<ArtistLike> artistLikeListt) {
+        this.artistLikeList = artistLikeListt;
     }
 
-    public AdaptarySongLike(Context mContext, List<SongLike> songLikeList){
+    public AdaptaryArtistLike(Context mContext, List<ArtistLike> artistLikeListt) {
         this.mContext = mContext;
-        this.songLikeList = songLikeList;
+        this.artistLikeList = artistLikeListt;
     }
 
     @NonNull
@@ -43,37 +43,37 @@ public class AdaptarySongLike extends RecyclerView.Adapter<AdaptarySongLike.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.songName.setText(songLikeList.get(position).getCancion().getNombreCancion());
-        Bitmap bitmapImg = StringToBitMap(songLikeList.get(position).getCancion().getImagenCancion());
+        holder.artistName.setText(artistLikeList.get(position).getArtista().getNombreArtista());
+        //Bitmap bitmapImg = StringToBitMap(artistLikeListt.get(position).getCancion().getImagenCancion());
         //holder.imgViewSongLike.setImageBitmap(bitmapImg);
     }
 
     @Override
     public int getItemCount() {
-        return songLikeList.size();
+        return artistLikeList.size();
     }
 
-    public Bitmap StringToBitMap(String encodedString){
-        try{
-            byte [] encodeByte = Base64.decode(encodedString,Base64.DEFAULT);
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView songName;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView artistName;
         ImageView imgViewSongLike;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            songName = itemView.findViewById(R.id.txtsongName);
+            artistName = itemView.findViewById(R.id.txtsongName);
             //imgViewSongLike = itemView.findViewById(R.id.imgViewSongLike);
         }
     }
+
 }

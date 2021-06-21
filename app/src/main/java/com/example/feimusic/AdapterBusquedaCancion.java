@@ -17,10 +17,12 @@ import com.example.feimusic.Response.CancionResponse;
 
 import java.util.List;
 
-public class AdapterBusquedaCancion extends RecyclerView.Adapter<AdapterBusquedaCancion.MyViewHolder>{
+public class AdapterBusquedaCancion extends RecyclerView.Adapter<AdapterBusquedaCancion.MyViewHolder>
+implements View.OnClickListener{
 
     private Context mContext;
     private List<CancionResponse> cancionesResponseList;
+    private View.OnClickListener listener;
 
     public void setCancionesResponseList(List<CancionResponse> cancionesResponseList) {
         this.cancionesResponseList = cancionesResponseList;
@@ -36,7 +38,9 @@ public class AdapterBusquedaCancion extends RecyclerView.Adapter<AdapterBusqueda
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        v = layoutInflater.inflate(R.layout.songlike_list_item, parent, false);
+        v = layoutInflater.inflate(R.layout.cancion_list_item, parent, false);
+
+        v.setOnClickListener(this);
         return new MyViewHolder(v);
     }
 
@@ -53,6 +57,16 @@ public class AdapterBusquedaCancion extends RecyclerView.Adapter<AdapterBusqueda
         return cancionesResponseList.size();
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView nombreCancion;
@@ -64,7 +78,7 @@ public class AdapterBusquedaCancion extends RecyclerView.Adapter<AdapterBusqueda
             super(itemView);
 
             nombreCancion = itemView.findViewById(R.id.txtsongName);
-            img = itemView.findViewById(R.id.imgViewSongLike);
+            //img = itemView.findViewById(R.id.imgViewSongLike);
         }
     }
 

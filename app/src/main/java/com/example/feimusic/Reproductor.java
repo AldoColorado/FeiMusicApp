@@ -27,6 +27,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +45,9 @@ public class Reproductor extends AppCompatActivity {
     CancionResponse cancion;
     int repetir = 2, posicion = 0;
     MediaPlayer mPlayer = new MediaPlayer();
-    MediaPlayer vectorMediaPlayer [];   // Para guardar las canciones en un vector
+    Uri uri;
+
+
 
 
     @Override
@@ -53,9 +57,19 @@ public class Reproductor extends AppCompatActivity {
         imagenPortada = findViewById(R.id.portada);
         progressBar = findViewById(R.id.progressBar);
 
+        //Uri uri = new Uri(myUri);
+
+        //String myUri = "content://com.android.providers.downloads.documents/document/23";
+        //MediaPlayer mediaPlayer = new MediaPlayer();
+        //mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        //mediaPlayer.setDataSource(getApplicationContext(), myUri);
+        //mediaPlayer.prepare();
+        //mediaPlayer.start();
+
+
     }
 
-    public void botonReproducir(View v){
+    public void botonReproducir(View v) throws IOException {
         showFileChooserImagen();
     }
 
@@ -79,21 +93,12 @@ public class Reproductor extends AppCompatActivity {
 
                 InputStream inputStream =
                         getContentResolver().openInputStream(filePath);
-
-
-                Log.d("Mytag", filePath.getPath());
-
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mPlayer.setDataSource(getApplicationContext(), filePath);
-                mPlayer.prepare(); // might take long! (for buffering, etc)
-                mPlayer.start();
-
-
+                Log.d("myuri", filePath.getPath());
+                Log.d("uri", data.getDataString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            //cancionbytes = bytesToHex(bytearray);
         }
 
     }
@@ -107,11 +112,7 @@ public class Reproductor extends AppCompatActivity {
             FileOutputStream fos = new FileOutputStream(archivo);
             fos.write(bytesArreglo);
 
-            mediaPlayer.reset();
-            FileInputStream fis = new FileInputStream(archivo);
-            mediaPlayer.setDataSource(fis.getFD());
-            mediaPlayer.prepare();
-            mediaPlayer.start();
+
 
 
         } catch (IOException exception){
@@ -130,7 +131,7 @@ public class Reproductor extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            //obtenerCancion("1");
+
             return null;
         }
 

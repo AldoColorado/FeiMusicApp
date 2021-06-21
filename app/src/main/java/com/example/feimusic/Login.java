@@ -110,7 +110,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<ConsumidorRegisterResponse> call, Response<ConsumidorRegisterResponse> response) {
                 if(response.body().getStatus().equals("Success")){
 
-                    Intent intent = new Intent(Login.this, Reproductor.class);
+                    Intent intent = new Intent(Login.this, MainMenu.class);
                     startActivity(intent);
 
 

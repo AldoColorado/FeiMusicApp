@@ -46,7 +46,7 @@ public class cancionAdapter extends BaseAdapter {
         SongLike song = (SongLike) getItem(position);
 
         convertView = LayoutInflater.from(context).inflate(R.layout.cancion_list_item, null);
-        ImageView imgViewSongLike = convertView.findViewById(R.id.imgViewSongLike);
+        //ImageView imgViewSongLike = convertView.findViewById(R.id.imgViewSongLike);
         TextView txtSongName = convertView.findViewById(R.id.txtsongName);
         //Bitmap imagen = StringToBitMap(song.getCancion().getImagenCancion());
 
