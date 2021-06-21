@@ -7,7 +7,7 @@ public class ArtistLike {
 
     private int idArtista;
 
-    @SerializedName("Artista")
+    @SerializedName("Artistum")
     private Artista artista;
 
     public ArtistLike(int idArtista, Artista artista) {

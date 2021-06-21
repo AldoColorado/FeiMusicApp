@@ -84,6 +84,7 @@ public class ArtistsFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(this.getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
         adapter = new AdaptaryArtistLike(this.getActivity(), artistLikeList);
         recyclerView.setAdapter(adapter);
 
@@ -94,7 +95,7 @@ public class ArtistsFragment extends Fragment {
 
 
     public void getArtistLike(){
-        String idConsumidor = "2";
+        String idConsumidor = "1";
 
         Call<List<ArtistLike>> listCall = ApiClient.getArtistaLikeServer().getArtistLike(idConsumidor);
         listCall.enqueue(new Callback<List<ArtistLike>>() {
