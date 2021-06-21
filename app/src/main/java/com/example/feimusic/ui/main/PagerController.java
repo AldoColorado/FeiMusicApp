@@ -28,7 +28,7 @@ public class PagerController extends FragmentPagerAdapter {
                 return new PlaylistsFragment();
             case 2:
                 return new AlbumsFragment();
-            case 4:
+            case 3:
                 return new ArtistsFragment();
             default:
                 return null;

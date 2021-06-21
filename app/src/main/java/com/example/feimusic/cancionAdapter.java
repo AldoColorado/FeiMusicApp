@@ -11,16 +11,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.feimusic.R;
+import com.example.feimusic.Model.SongLike;
 import com.example.feimusic.Response.CancionResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class cancionAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<CancionResponse> songLikeList;
+    private ArrayList<SongLike> songLikeList;
 
-    public cancionAdapter(Context context, ArrayList<CancionResponse> songLikeList) {
+    public cancionAdapter(Context context, ArrayList<SongLike> songLikeList) {
         this.context = context;
         this.songLikeList = songLikeList;
     }
@@ -42,15 +43,15 @@ public class cancionAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CancionResponse song = (CancionResponse) getItem(position);
+        SongLike song = (SongLike) getItem(position);
 
-        convertView = LayoutInflater.from(context).inflate(R.layout.songlike_list_item, null);
+        convertView = LayoutInflater.from(context).inflate(R.layout.cancion_list_item, null);
         ImageView imgViewSongLike = convertView.findViewById(R.id.imgViewSongLike);
         TextView txtSongName = convertView.findViewById(R.id.txtsongName);
-        Bitmap imagen = StringToBitMap(song.getImagenCancion());
+        //Bitmap imagen = StringToBitMap(song.getCancion().getImagenCancion());
 
-        imgViewSongLike.setImageBitmap(imagen);
-        txtSongName.setText(song.getNombreCancion());
+        //imgViewSongLike.setImageBitmap(imagen);
+        txtSongName.setText(song.getCancion().getNombreCancion());
 
         return convertView;
     }
