@@ -1,10 +1,18 @@
 package com.example.feimusic;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,9 +38,11 @@ public class Reproductor extends AppCompatActivity {
     MediaPlayer mediaPlayer = new MediaPlayer();
     ImageView imagenPortada;
     ProgressBar progressBar;
+    int PICK_SONG_REQUEST = 1;
     public String track;
     CancionResponse cancion;
     int repetir = 2, posicion = 0;
+    MediaPlayer mPlayer = new MediaPlayer();
     MediaPlayer vectorMediaPlayer [];   // Para guardar las canciones en un vector
 
 
@@ -39,42 +50,57 @@ public class Reproductor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproductor);
-
         imagenPortada = findViewById(R.id.portada);
         progressBar = findViewById(R.id.progressBar);
 
-        //Call<CancionResponse> response = ApiClient.getCancionService().getCancion("1");
-
-        new Task1().execute();
-        //obtenerCancion();
     }
 
-    public void ReproducirCancion(View view){
-        //obtenerCancion();
-        //imagenPortada.setImageBitmap();
-        convertirAMp3(cancion.getTrack().toString());
-        String song = track;
-        int i = 1;
+    public void botonReproducir(View v){
+        showFileChooserImagen();
     }
 
-    public void obtenerCancion(String idCancion){
 
-        Call<CancionResponse> cancionResponseCall = ApiClient.getCancionService().getCancion(idCancion);
+    private void showFileChooserImagen() {
+        Intent intent = new Intent();
+        intent.setType("audio/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Seleciona la cancion"), PICK_SONG_REQUEST);
+    }
 
-        try{
-            Response<CancionResponse> response = cancionResponseCall.execute();
-            cancion = response.body();
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_SONG_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            byte[] bytearray = new byte[0];
+            try {
+
+                InputStream inputStream =
+                        getContentResolver().openInputStream(filePath);
+
+
+                Log.d("Mytag", filePath.getPath());
+
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mPlayer.setDataSource(getApplicationContext(), filePath);
+                mPlayer.prepare(); // might take long! (for buffering, etc)
+                mPlayer.start();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //cancionbytes = bytesToHex(bytearray);
         }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
 
     }
-
-
 
     public void convertirAMp3(String bytesCadena){
         try{
+
             byte[] bytesArreglo = bytesCadena.getBytes("UTF_8");
             File archivo = File.createTempFile("mobile", "mp3", getCacheDir());
             archivo.deleteOnExit();
@@ -104,7 +130,7 @@ public class Reproductor extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            obtenerCancion("1");
+            //obtenerCancion("1");
             return null;
         }
 
@@ -112,8 +138,6 @@ public class Reproductor extends AppCompatActivity {
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
         }
-
-
     }
 
 

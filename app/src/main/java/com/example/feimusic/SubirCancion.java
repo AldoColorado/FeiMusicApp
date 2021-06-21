@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -118,7 +119,8 @@ public class SubirCancion extends AppCompatActivity {
                     InputStream inputStream =
                             getContentResolver().openInputStream(filePath);
 
-
+                    Toast.makeText(SubirCancion.this,filePath.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("Mytag", filePath.getPath());
                     //cancionbytes = Base64.encodeToString(bytes, 0);
 
                     bytearray = new byte[inputStream.available()];

@@ -5,6 +5,8 @@ import com.example.feimusic.Request.CancionRequest;
 import com.example.feimusic.Response.ArtistaResponse;
 import com.example.feimusic.Response.CancionResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
@@ -17,7 +19,7 @@ public interface CancionService {
     @POST("Cancion")
     Call<CancionResponse> cancionRegister(@Body CancionRequest cancionRequest);
 
-    @GET("Cancion/{idCancion}")
-    Call<CancionResponse> getCancion(@Path("idCancion") String idCancion);
+    @GET("Cancion/{nombreCancion}")
+    Call<List<CancionResponse>> getCancion(@Path("nombreCancion") String nombreCancion);
 
 }

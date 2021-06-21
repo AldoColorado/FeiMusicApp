@@ -1,6 +1,7 @@
 package com.example.feimusic;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -109,7 +110,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<ConsumidorRegisterResponse> call, Response<ConsumidorRegisterResponse> response) {
                 if(response.body().getStatus().equals("Success")){
 
-                    Intent intent = new Intent(Login.this, MainMenu.class);
+                    Intent intent = new Intent(Login.this, Reproductor.class);
                     startActivity(intent);
 
 
