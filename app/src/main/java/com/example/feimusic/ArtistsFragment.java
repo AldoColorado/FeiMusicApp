@@ -3,10 +3,24 @@ package com.example.feimusic;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.feimusic.API.ApiClient;
+import com.example.feimusic.Model.ArtistLike;
+import com.example.feimusic.Model.SongLike;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +37,10 @@ public class ArtistsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
+
+    private List<ArtistLike> artistLikeList = new ArrayList<>();
+    AdaptaryArtistLike adapter;
 
     public ArtistsFragment() {
         // Required empty public constructor
@@ -59,6 +77,59 @@ public class ArtistsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artists, container, false);
+        View view = inflater.inflate(R.layout.fragment_artists, container, false);
+
+        recyclerView = view.findViewById(R.id.ListaArtistas);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this.getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        adapter = new AdaptaryArtistLike(this.getActivity(), artistLikeList);
+        recyclerView.setAdapter(adapter);
+
+        getArtistLike();
+
+        return view;
     }
+
+
+    public void getArtistLike(){
+        String idConsumidor = "2";
+
+        Call<List<ArtistLike>> listCall = ApiClient.getArtistaLikeServer().getArtistLike(idConsumidor);
+        listCall.enqueue(new Callback<List<ArtistLike>>() {
+            @Override
+            public void onResponse(Call<List<ArtistLike>> call, Response<List<ArtistLike>> response) {
+                List<ArtistLike> listaArtistLike = response.body();
+
+                if(response.code() != 200){
+                    Toast.makeText(getActivity(), "Error de conexionr", Toast.LENGTH_LONG).show();
+                }else{
+                    artistLikeList.addAll(listaArtistLike);
+                }
+
+
+                PutDataIntoRecyclerView(artistLikeList);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ArtistLike>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void PutDataIntoRecyclerView(List<ArtistLike> artistLikeList) {
+        LinearLayoutManager manager = new LinearLayoutManager(this.getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
+        adapter.setArtistLikeList(artistLikeList);
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
+    }
+
+
+
 }
