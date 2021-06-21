@@ -68,4 +68,10 @@ public class ApiClient {
 
         return songLikeService;
     }
+
+    public static  AlbumLikeService getAlbumLikeService(){
+        AlbumLikeService albumLikeService = getRetrofit().create(AlbumLikeService.class);
+
+        return  albumLikeService;
+    }
 }
