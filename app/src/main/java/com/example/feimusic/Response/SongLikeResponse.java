@@ -1,22 +1,15 @@
 package com.example.feimusic.Response;
 
+import com.example.feimusic.Model.SongLike;
+
 public class SongLikeResponse {
-    private int idCancion;
-    private int idConsumidor;
+    private SongLike[] canciones;
 
-    public int getIdCancion() {
-        return idCancion;
+    public SongLike[] getCanciones() {
+        return canciones;
     }
 
-    public void setIdCancion(int idCancion) {
-        this.idCancion = idCancion;
-    }
-
-    public int getIdConsumidor() {
-        return idConsumidor;
-    }
-
-    public void setIdConsumidor(int idConsumidor) {
-        this.idConsumidor = idConsumidor;
+    public void setCanciones(SongLike[] canciones) {
+        this.canciones = canciones;
     }
 }
